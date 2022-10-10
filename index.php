@@ -51,7 +51,7 @@ echo "<br>";
 // Exo4
 $number = 2;
 
-if ( $number % 2 == 0 ) {
+if ($number % 2 == 0) {
     echo "Le chiffre $number est pair.";
 } else {
     echo "Le chiffre $number est impair.";
@@ -69,7 +69,7 @@ echo "<br>";
 // Exo5
 $multiple = 45;
 
-if ( $multiple % 3 == 0 && $multiple % 5 == 0 ) {
+if ($multiple % 3 == 0 && $multiple % 5 == 0) {
     echo "$multiple est un multiple de 3 et de 5.";
 } else {
     echo "$multiple n'est pas un multiple de 3 et de 5.";
@@ -77,14 +77,14 @@ if ( $multiple % 3 == 0 && $multiple % 5 == 0 ) {
 
 echo "<br>";
 
-// Exo5
+// Exo6
 $negative_nb = -174;
 
 echo "La valeur absolue de $negative_nb est " . abs($negative_nb);
 
 echo "<br>";
 
-// Exo6
+// Exo7
 $days = [
     'Monday',
     'Tuesday',
@@ -98,3 +98,103 @@ $days = [
 for ($i = 0; $i < count($days); $i++) {
     echo $days[$i] . " = " . date('N', strtotime($days[$i])) . "<br>";
 }
+
+// Exo8
+function nbInInterval(int $nb1, int $nb2)
+{
+    for ($i = $nb1; $i <= $nb2; $i++) {
+        echo $i . "\n<br />";
+    }
+}
+nbInInterval(6, 17);
+// Ou alors avec range() (https://www.php.net/manual/fr/function.range.php) :
+function nbInInterval2($nb1, $nb2)
+{
+    foreach (range($nb1, $nb2) as $result) {
+        echo $result . "\n<br />";
+    }
+}
+nbInInterval2(567, 574);
+
+// Exo9
+function equalNumbers($nb1, $nb2, $nb3, $nb14)
+{
+    $nbResAdd = $nb1 + $nb2;
+    $nbResMult = $nb3 * $nb14;
+
+    if ($nbResAdd == $nbResMult) {
+        echo $nbResAdd . " est égal à " . $nbResMult;
+    } elseif ($nbResAdd < $nbResMult) {
+        echo $nbResAdd . " est inférieur à " . $nbResMult;
+    } else {
+        echo $nbResAdd . " est supérieur à " . $nbResMult;
+    }
+}
+equalNumbers(4, 6, 2, 5);
+echo "<br>";
+equalNumbers(1, 2, 3, 4);
+echo "<br>";
+equalNumbers(43, 543, 56, 3);
+echo "<br>";
+
+// Exo10
+function separateOddEven($arrayNumbers)
+{
+    $odds = array();
+    $even = array();
+    foreach ($arrayNumbers as $result) {
+        if ($result % 2 == 0) {
+            $even[] = $result;
+        } else {
+            $odds[] = $result;
+        }
+    }
+    var_dump($odds);
+    var_dump($even);
+}
+separateOddEven([45, 34, 3, 99, 297, 2]);
+echo "<br>";
+separateOddEven([8472, 987, 84879, 32, 908]);
+echo "<br>";
+
+// Exo11
+function multipleOfThree ($arrayNumbers) 
+{
+    $arrResult = array();
+
+    foreach ($arrayNumbers as $result) {
+        if ($result % 3 == 0) {
+            array_push($arrResult, $result);
+        }
+    }
+
+    return $arrResult;
+}
+var_dump(multipleOfThree([45, 34, 3, 99, 297, 2]));
+echo "<br>";
+
+// Exo12
+function sumOfArray (array $arrayNumbers): int 
+{
+    $result = 0;
+
+    foreach ($arrayNumbers as $value) {
+        $result += $value;
+    }
+
+    return $result;
+}
+echo sumOfArray([45, 34, 3, 99, 297, 2]);
+echo "<br>";
+echo sumOfArray([8472, 987, 84879, 32, 908]);
+echo "<br>";
+
+// Exo13
+function average (array $arrayNumbers): int
+{
+    return floor(sumOfArray($arrayNumbers) / count($arrayNumbers));
+}
+echo average([45, 34, 3, 99, 297, 2]);
+echo "<br>";
+echo average([8472, 987, 84879, 32, 908]);
+echo "<br>";
